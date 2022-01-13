@@ -104,9 +104,6 @@ def QuickSort(A):
 - 상수 c값은?
 
   - 각 그룹의 중간값을 기준으로 리스트의 모든 값을 나열하여 m\*을 기준으로 4개의 그룹(X, Y, Z, W, 각각 최소 n/4개씩)으로 나눔
-
-  ![제목_0 (2).png](<https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6f6eb10e-54ab-48af-b9f6-96a74680533e/제목_0_(2).png>)
-
   - X에 들어있는 모든 값은 m\*보다 작음이 보장됨
   - W에 들어있는 모든 값은 m\*보다 큼이 보장됨
   - Y, Z는 모름
