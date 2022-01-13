@@ -28,6 +28,8 @@
 
      k번째 값은 p와 같으므로 return p
 
+<br/>
+
 ```python
 def quick_select(L, k):
 	"""리스트 L에서 정수 k번째 값을 찾아서 리턴하는 함수"""
@@ -111,3 +113,45 @@ def QuickSort(A):
   - 따라서 n/4 ≤ |A| ≤ 3n/4 (=n/c), n/4 ≤ |B| ≤ 3n/4 (=n/c)
   - A와 B의 최대 항목 수가 3n/4이므로 c는 3/4의 역수인 4/3이다.
   - 그렇게 되면 |A|와 |B| 모두 전체 개수 n의 25% 이상 75% 이하임이 보장됨 (m\*을 pivot으로 사용하면 값들이 비교적 균등하게 나눠짐이 확인!)
+
+<br/>
+
+```python
+def find_median_five(A):
+  """정렬과정 없이 리스트 A의 중간값 리턴하는 함수"""
+	if len(A) % 2 == 0: # 짝수 개
+		while len(A) > 2:
+			A.remove(max(A)); A.remove(min(A))
+		return min(A)
+	else: # 홀수 개
+		while len(A) > 1:
+			A.remove(max(A)); A.remove(min(A))
+		return A[0]
+
+
+def MoM(A, k):
+  """리스트 A의 값 중에서 k번째로 작은 수 리턴하는 함수"""
+	if len(A) == 1: # no more recursion
+		return A[0]
+	i = 0
+	S, M, L, medians = [], [], [], []
+	while i+4 < len(A):
+		medians.append(find_median_five(A[i: i+5]))
+		i += 5
+
+	if i < len(A) and i+4 >= len(A): # 마지막 그룹으로 5개 미만의 값으로 구성
+		medians.append(find_median_five(A[i:]))
+
+	mom = MoM(medians, len(medians) // 2)
+	for v in A:
+		if v < mom:
+			S.append(v)
+		elif v > mom:
+			L.append(v)
+		else:
+			M.append(v)
+
+	if len(S) >= k : return MoM(S, k)
+	elif len(S) + len(M) < k: return MoM(L, k-len(S)-len(M))
+	else: return mom
+```
