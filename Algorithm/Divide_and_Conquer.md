@@ -20,9 +20,6 @@ def power1(a, n):
 
 <br/>
 
----
-
-<br/>
 2. power2(a, n) = power(a, n/2) \* power(a, n/2) (이 경우 n이 짝수 or 홀수에 따라 연산 달라짐)
 
 ```python
@@ -37,10 +34,6 @@ def power2(a, n):
 ```
 
 - T(n) = 2\*T(n/2) + c, T(1) = c → O(n)
-
-<br/>
-
----
 
 <br/>
 
@@ -74,6 +67,9 @@ def power3(a, n):
 - ✨어떤 재귀 호출이냐에 따라 수행 시간이 크게 달라진다!
 
 <br/>
+
+---
+
 <br/>
 
 ### 피보나치 수
@@ -96,10 +92,6 @@ def fibo_1(n):
 
 <br/>
 
----
-
-<br/>
-
 2. 세 변수만을 이용해서 n번째 수를 계산하는 방법
 
 ```python
@@ -113,10 +105,6 @@ def fibo_2(n):
 ```
 
 - O(n)
-
-<br/>
-
----
 
 <br/>
 
@@ -134,10 +122,60 @@ def fibo_3(n):
 
 <br/>
 
----
-
-<br/>
 4. 행렬 곱셈식을 이용한 방법
 
 - 앞서 봤던 power3(a, n) 방법 이용
 - O(log n)
+
+<br/>
+
+---
+
+<br/>
+
+### 최대 구간 합 구하기
+
+- prefix sum
+
+```python
+def max_sum(A):
+	p = []
+	for i in range(len(A)):
+		p.append(sum(A[:i+1])) # A[0]부터 A[i]까지의 합 저장
+	
+	hap = -100 # 아무거나 초기화 (답이 음수일 수도 있음)
+	for i in range(len(p)):
+		for j in range(i, len(p)):
+			if i == 0: hap = max(hap, p[j])
+			else: hap = max(hap, p[j] - p[i-1])
+	# 최대 구간 합 리턴
+	return hap
+```
+
+<br/>
+
+- 분할 정복
+
+```python
+def max_sum(A, left, right):
+	if left == right: return A[left] # 둘 중 아무거나
+	
+	m = (left + right) // 2 # 중간값
+	
+	# 1. 최대 합이 왼쪽에 존재하는 경우 or 2. 오른쪽에 존재하는 경우
+	result = max(max_sum(A, left, m), max_sum(A, m+1, right))
+	
+	# 3. 양쪽에 걸치는 경우 (최대 합 = 왼쪽 끝 + 오른쪽 시작부분의 합)
+	l_hap = 0; l = -100; r_hap = 0; r = -100; # 초기화
+	for i in range(m, 0, -1):
+		l_hap += A[i] # A[m]부터 하나씩 더함
+		l = max(l, l_hap) # A[m]에서 끝나는 왼쪽 최대구간
+	
+	for i in range(m+1, right+1):
+		r_hap += A[i] # A[m+1]부터 하나씩 더함
+		r = max(r, r_hap) # A[m+1]로 시작하는 오른쪽 최대구간
+	both = l + r
+	
+	# A[left], ..., A[right] 중 최대 구간 합 리턴
+	return max(result, both)
+```
