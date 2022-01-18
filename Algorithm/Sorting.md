@@ -57,3 +57,48 @@ def bubble_sort(A):
 
         if not bChanged: break # 한번도 자리이동 안했으면 => 이미 정렬 완료됨
 ```
+
+<br/>
+<br/>
+
+### Quick sort 알고리즘
+
+---
+
+- 가장 유명한 알고리즘 중 하나
+
+- 최악의 경우 O(n^2)로 꽤 느리지만, 실제로 동작해보면 가장 빠름
+
+- Quick select와 유사함 (pivot을 기준으로 세 개의 배열로 나눠서 각각 정렬)
+
+<br/>
+
+```python
+def quick_sort(A):
+	if len(A) < 2: return A # 정렬할 게 없음
+
+	p = A[0] # pivot
+	S, M , L = [], [], []
+	for x in A:
+		if x < p: x.append(S)
+		elif x > p: x.append(L)
+		else: x.append(M)
+
+	return quick_sort(S) + M + quick_sort(L) # 정렬된 리스트를 하나로 리턴
+```
+
+<br/>
+
+- stable한 알고리즘 = 주어진 순서대로 비교해서 append하기 때문에 순서 바뀌지 않음
+- not in-place 알고리즘 = n개의 항목을 각각 copy해서 새로운 배열에 저장 (입력 크기 O(n)에 비례하는 추가 메모리를 사용)
+
+<br/>
+
+- T(n) = T(|S|) + T(|L|) + cn (A 나눌 때 n-1번 비교)
+- S와 L이 어떻게 나뉘냐에 따라 수행 시간이 달라짐
+  - worst case: S와 L 중 하나에만 값이 몰리는 경우 (이미 정렬된 경우)
+    - ⇒ T(n) = T(n-1) + cn = O(n^2)
+  - best case: S와 L이 균등하게 나눠지는 경우
+    - ⇒ T(n) = T(n/2) + T(n/2) + cn = 2T(n/2) + cn = O(n\*log n)
+  - 하지만 worst case와 같은 경우의 입력은 자주 일어나지 않는다.
+  - 평균(average case) = O(n\*log n) 으로 굉장히 빠름
