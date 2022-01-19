@@ -119,18 +119,23 @@ def quick_sort(A):
 ```python
 def quick_sort2(A, first, last):
 	"""A[first]부터 A[last]까지 정렬"""
+	if first >= last: return  # 정렬할 값이 없음 -> 종료
+	
 	p = A[first] # pivot
-	left = first + 1; right = last
-
+	left, right = first + 1, last
+	
 	while left <= right: # 비교할 항목이 존재하는 동안
 		while left <= last and A[left] < p: # p보다 큰 값을 만날 때까지
 			left += 1 # 오른쪽으로 한 칸씩 이동
 		while A[right] > p: # p보다 작은 값을 만날 때까지
 			right -= 1 # 왼쪽으로 한 칸씩 이동
-
-		if left <= right:
+		
+		#현재 left는 pivot보다 큰 값, right는 pivot보다 작은 값임 (right < left)
+		if left <= right: # left 위치가 right보다 왼쪽에 있으면
 			A[left], A[right] = A[right], A[left] # 자리 바꿈
 			left += 1; right -= 1
 
 	A[first], A[right] = A[right], A[first] # 마지막으로 pivot 값을 가운데로 이동
+	quick_sort2(A, first, right-1) # 현재 right 위치에 pivot값이 들어있음 -> pivot보다 작은 값들에 대하여 재귀호출
+	quick_sort2(A, right+1, last) # pivot보다 큰 값에 대하여 재귀호출
 ```
