@@ -139,3 +139,14 @@ def quick_sort2(A, first, last):
 	quick_sort2(A, first, right-1) # 현재 right 위치에 pivot값이 들어있음 -> pivot보다 작은 값들에 대하여 재귀호출
 	quick_sort2(A, right+1, last) # pivot보다 큰 값에 대하여 재귀호출
 ```
+
+<br/>
+<br/>
+
+### Merge sort 알고리즘
+
+---
+
+- pivot에 의존하지 않고 강제로 배열을 반반씩 나누자!
+- 각각 재귀적으로 정렬(sorting)하고 최종적으로 하나의 배열로 병합(merge)
+- not in-place 알고리즘 : 주어진 배열과 같은 크기의 새로운 배열(추가 메모리)을 사용
