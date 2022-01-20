@@ -166,14 +166,17 @@ def merge_sort(A, first, last):
 		if A[i] < A[j]: B.append(A[i]); i += 1
 		else: B.append(A[j]); j += 1
 	
-	# 비교하고 남은 값들 한꺼번에 append
+	# 비교하고 남은 값들 한꺼번에 append (두 for문 중 값이 남아있는 하나만 돌아감)
 	for i in range(i, mid+1): B.append(A[i])
 	for j in range(j, last+1): B.append(A[j])
 
 	# 최종적으로 정렬된 B의 값들을 A로 옮겨줌 (A를 정렬하는 문제이기 때문에)
 	for k in range(first, last+1): # 처음부터 끝까지
-		A[k] = B[k] # B의 값을 A로 복사	
+		A[k] = B[k-first] # B의 값을 A로 복사	(first의 값이 0이 아닐 수 있기 때문에 인덱스 조정이 필요함)
 ```
 <br/>
 
+- T(n) = 2T(n/2) + cn (두 배열을 하나로 합치는 과정 = 모든 값을 한번씩 비교+다른 배열로 이동)
+- 위 수행시간은 worst/average/best 상관없이 Quick sort의 best case와 같다 (무조건 절반으로 나누기 때문에) = O(n*log n)
+- 가장 완전한 형태의 정렬 알고리즘 (가장 빠르고 이상적인 수행시간)
 
