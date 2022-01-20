@@ -150,3 +150,30 @@ def quick_sort2(A, first, last):
 - pivot에 의존하지 않고 강제로 배열을 반반씩 나누자!
 - 각각 재귀적으로 정렬(sorting)하고 최종적으로 하나의 배열로 병합(merge)
 - not in-place 알고리즘 : 주어진 배열과 같은 크기의 새로운 배열(추가 메모리)을 사용
+
+```python
+def merge_sort(A, first, last):
+	"""A[first]부터 A[last]까지 정렬"""
+	if first >= last: return # 정렬할 값이 없음 -> 종료
+	mid = (first + last) // 2 # 중간값
+	# 중간값을 기준으로 반씩 나눠서 각각 재귀호출
+	merge_sort(A, first, mid)
+	merge_sort(A, mid+1, last)
+	
+	B = [] # A와 크기가 같은 새로운 리스트
+	i, j = first, mid+1 # 반으로 나눈 두 리스트의 시작 인덱스
+	while i <= mid and j <= last: # 처음부터 끝까지 하나씩 비교
+		if A[i] < A[j]: B.append(A[i]); i += 1
+		else: B.append(A[j]); j += 1
+	
+	# 비교하고 남은 값들 한꺼번에 append
+	for i in range(i, mid+1): B.append(A[i])
+	for j in range(j, last+1): B.append(A[j])
+
+	# 최종적으로 정렬된 B의 값들을 A로 옮겨줌 (A를 정렬하는 문제이기 때문에)
+	for k in range(first, last+1): # 처음부터 끝까지
+		A[k] = B[k] # B의 값을 A로 복사	
+```
+<br/>
+
+
