@@ -182,6 +182,7 @@ def merge_sort(A, first, last):
 
 <br/>
 <br/>
+
 ### Tim 정렬
 
 ---
