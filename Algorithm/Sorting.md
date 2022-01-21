@@ -180,3 +180,13 @@ def merge_sort(A, first, last):
 - 위 수행시간은 worst/average/best 상관없이 Quick sort의 best case와 같다 (무조건 절반으로 나누기 때문에) = O(n*log n)
 - 가장 완전한 형태의 정렬 알고리즘 (가장 빠르고 이상적인 수행시간)
 
+<br/>
+<br/>
+### Tim 정렬
+
+---
+
+- 파이썬에서의 sort 함수..!!! 효율성이 검증되면서 Java, JavaScript 등에서도 사용됨
+- **insertion sort와 merge sort를 결합**한 하이브리드 sorting 알고리즘. 비교횟수와 이동/교환 횟수를 최소화하고자 한 형태이다.
+- 정렬해야 할 배열의 값들 중 **이미 정렬된 상태인 일부**를 활용해서 더 빠른 시간 내에 정렬하려는 알고리즘이다.
+
