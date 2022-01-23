@@ -155,6 +155,58 @@
   
 ## Pseudo Selectors
 - element를 **세부적으로** 선택하는 방법 ⇒ **태그 이름: 속성 { }**
-- ex) div: first-child { } → 여러 div 중 첫번째 것 / div: last-child{ } → 여러 div 중 마지막 것 / div: nth-child(N) { }→ 여러 div 중 N번째 것(odd, even도 선택 가능)
+- ex) div: first-child { } → 여러 div 중 첫번째 것 / div: last-child{ } → 여러 div 중 마지막 것 <br/>
+      div: nth-child(N) { }→ 여러 div 중 N번째 것(odd, even도 선택 가능)  <br/>
+      input: required {style} → required 속성을 가지는 input을 select <br/>
 - html 코드를 수정할 필요 없이 css 코드에서 선택만 잘 해주면 되므로 효율적인 방법이다.
 
+<br/>
+  
+## Attribute selector
+
+- 태그가 갖는 attribute를 통해 selector를 선택하는 방법 (class를 지정할 필요 없이 CSS만으로 가능)
+- **tag [attr=”value”] {style}** ⇒ 해당 속성값이 value인 tag를 select
+    
+    **tag [attr~=”value”] {style}** ⇒ 해당 속성값에 “value”(+앞뒤공백)를 포함하는 모든 tag를 select
+    
+    **tag [attr\*=”value”] {style}** ⇒ 해당 속성값에 value를 포함하는 tag를 select
+    
+    **tag [attr$=”value”] {style}** ⇒ 해당 속성값이 value로 끝나는 tag를 select
+    
+    ex) input[type=”text”] { } ⇒ text 타입인 모든 input을 선택
+    
+    input[placeholder~=”name”] { } ⇒ placeholder에 **단어** “name”을 포함하는 모든 input을 선택 ex) first **name**, last **name**
+    
+    input[placeholder*=”name”] { } ⇒ placeholder에 “name” **문자열**을 포함하는 모든 input을 선택 ex) abcdefghijklm**name**opqr
+    
+- 더 많은 속성들→ mdn 참조 [Attribute selectors - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors)
+
+<br/>
+<br/>
+
+## Combinators
+- 다른 selector와 함께 쓰이면서 **둘 사이의 관계**를 표현하는 방식의 **selector**
+1. **Descendant combinator(space)**: div span {style} ⇒ div(부모) 속에 존재하는 **모든** span(**자식**)을 찾아서 select
+2. **Child combinator(>)**: div **>** span {style} ⇒ div의 **direct child** span(바로 밑에 있는 자식)을 찾아서 select
+3. **Adjacent sibling combinator(+)**: div **+** span {style} ⇒ div의 **direct brother** span(**형제**)을 찾아서 select (둘 사이에 다른 요소가 있으면 안됨. 무조건 바로 뒤!!)
+4. **General** **sibling combinator(~)** : div ~ span {style}  ⇒ div와 형제이기는 하지만 바로 뒤에 오지 않는 형제 span을 찾아서 select
+
+<br/>
+
+- CSS는 기본적으로 Cascading의 우선순위를 갖지만, selector들 간에는 고려해야 할 우선순위가 따로 존재한다.
+- selector 우선순위 계산하기 → [Specificity Calculator](https://specificity.keegan.st/)
+
+<br/>
+<br/>
+
+## States
+- element의 **활성화 상태**에 대한 스타일
+1. **: active** ⇒ 대상을 클릭하고 있는 상태
+2. **: hover** ⇒ 마우스가 대상 위에 있는 상태 (클릭 아님)
+3. **: focus** ⇒ 키보드로 선택되어 있는 상태 (Tap 키 등등)
+4. **: visited** ⇒ 링크에 방문한 상태, 링크에만 적용.
+5. : **focus-within** ⇒ focused된 자식을 가진 **부모 요소**에 적용됨
+
+- state를 다른 element와 연계해서 사용할 수도 있다.
+    - **elem1: state elem2 {style}** ⇒ elem1(부모)가 활성화되면 elem2(자식)의 스타일이 바뀜
+    - **elem1: state elem2: state {style}** ⇒ elem1(부모)가 활성화되고, elem2(자식)도 활성화 되면 elem2의 스타일이 바뀜
