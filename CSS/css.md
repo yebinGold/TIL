@@ -210,3 +210,20 @@
 - state를 다른 element와 연계해서 사용할 수도 있다.
     - **elem1: state elem2 {style}** ⇒ elem1(부모)가 활성화되면 elem2(자식)의 스타일이 바뀜
     - **elem1: state elem2: state {style}** ⇒ elem1(부모)가 활성화되고, elem2(자식)도 활성화 되면 elem2의 스타일이 바뀜
+
+<br/>
+<br/>
+
+## Colors
+1. hexadecimal color (16진수 컬러) : 색상 코드 ex) #FF6347
+2. rgb(Red Green Blue)
+3. rgba(Red Green Blue Alpha): rgb + opacity(투명도%)
+
+<br/>
+
+### Variable (custom property)
+
+- CSS도 프로그래밍 언어처럼 변수를 사용할 수 있다.
+- **:root** 요소(모든 document의 뿌리)에 변수 (**—var-name**)를 추가해서 사용 가능
+- 색상 코드, border style 등의 스타일을 저장하여 사용할 수 있다. (ex) —main-color)
+- 사용할 때는 **var(변수명)**으로 사용
