@@ -32,5 +32,21 @@
     
 - transition과 transformation은 결합이 가능하다!
     - state가 있을 때의 스타일에 transformation을 설정해주면 요소 변형이 상태에 적용됨!
+- rotate : 회전 / translate: 위치 이동 / scale: 크기 확대 or 축소 
 
   [transform - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ko/docs/Web/CSS/transform)
+
+    
+<br/>
+<br/>
+
+### Animation
+- 계속 재생되는 애니메이션 != transition
+- **@keyframes 애니메이션 이름 {option}**
+- 애니메이션 옵션
+    - from {속성} to {속성} : 시작과 끝을 정해줌
+    - 0% {속성} 10%{속성} ... 100{속성}  : 여러 단계로 나눠서 만들어줌
+    
+- 애니메이션 적용 → **elem {animation: 애니메이션 이름 실행 시간 ease-in function;}**
+- 애니메이션을 계속해서 반복하고 싶다면? → 마지막에 **infinite** 속성 써주기!
+- animation-delay: 애니메이션 실행 시간을 설정 ex) animation-delay: 2s; = 2초 후에 실행
