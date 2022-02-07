@@ -81,7 +81,7 @@
 
 <br/>
   
-- **display 속성** 사용하기
+## display 속성
     - 기본적으로 blocks의 display 속성은 block / inlines의 display 속성은 inline이다.
     - 각 속성의 디폴트 값을 바꿔주면 **block을 inline으로** 바꾸기 / **inline을 block으로** 바꾸기가 가능하다!
     - **주의)** inline은 너비, 높이 속성을 가질 수 없다  그래서 높이, 너비가 있는 block을 inline으로 바꿔주면 아무것도 안보임
