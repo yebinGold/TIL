@@ -82,23 +82,24 @@
 <br/>
   
 ## display 속성
-    - 기본적으로 blocks의 display 속성은 block / inlines의 display 속성은 inline이다.
-    - 각 속성의 디폴트 값을 바꿔주면 **block을 inline으로** 바꾸기 / **inline을 block으로** 바꾸기가 가능하다!
-    - **주의)** inline은 너비, 높이 속성을 가질 수 없다  그래서 높이, 너비가 있는 block을 inline으로 바꿔주면 아무것도 안보임
-    - ⇒ block의 속성을 inline이 아닌 **inline-block**으로 바꿔주면 inline이긴 하지만 각각을 block으로 인식하게 만들어 준다! **BUT** inline-block은 문제가 많다...
+  - 기본적으로 blocks의 display 속성은 block / inlines의 display 속성은 inline이다.
+  - 각 속성의 디폴트 값을 바꿔주면 **block을 inline으로** 바꾸기 / **inline을 block으로** 바꾸기가 가능하다! <br/>
+  **주의)** inline은 너비, 높이 속성을 가질 수 없다  그래서 높이, 너비가 있는 block을 inline으로 바꿔주면 아무것도 안보임
+  
+  
+  - 위 문제를 해결하기 위해서 block의 속성을 inline이 아닌 **inline-block**으로 바꿔주는 방법이 있다. inline-block은 inline이긴 하지만 브라우저가 각각을 block으로 인식하게 만들어 준다! 
+  - **BUT** inline-block은 문제가 많다... (정해진 형식이 없어서 각 block들 사이에 default로 공간이 생긴다거나, 반응형 디자인(responsive design)을 지원하지 않아서 창 크기에 따라 형태가 달라지는 등...)
         
-        (정해진 형식이 없어서 각 block들 사이에 default로 공간이 생겨버린다.. also 반응형 디자인(responsive design)을 지원하지 않아서 창 크기에 따라 형태가 달라진다...)
-        
-    - ⇒ **Flexbox!!!** box를 원하는 어떤 곳이든 둘 수 있다!
+    - ⇒ **Flexbox!!!** 엘리먼트의 display를 flex로 설정해주면 box를 원하는 어떤 곳이든 둘 수 있다! (방향, 위치 등 설정 가능)
         - 규칙 1. **부모 요소 element**에 대해서만 명시할 것 (자식 요소는 xx)
-            - ex) div 박스의 위치를 옮기고 싶다면 부모 element인 body를 flex container로 만들어주어야 한다! 
-            - → body의 display 속성값을 **flex**로 변경한다. (**display: flex;**) ⇒ body가 자식 요소들의 속성을 제어할 수 있게 됨
+            - ex) div 박스의 위치를 옮기고 싶다면 부모에 해당하는 엘리먼트를 flex container로 만들어주어야 한다!
+            - → body의 display 속성값을 **flex**로 변경한다. (**display: flex;**) ⇒ 부모 엘리먼트가 자식 요소들의 속성을 제어할 수 있게 됨
         - 규칙 2. 주축(main axis)과 교차축(cross axis)을 기준으로 속성 제어
             - default로 **주축은 수평**, **교차축은 수직**을 나타낸다. (변경 가능)
             - 주축에 있는 item에 적용되는 속성: **justify-content**
-            - 교차축에 있는 item에 적용되는 속성: **align-items**
+            - 교차축에 있는 item에 적용되는 속성: **align-items**, **align-content**
             - align-items를 사용하려면 부모 요소에 height 속성값을 주어야 함! (height 기본값은 자식 요소의 height와 같기 때문에)
-            - body에 height를 줄 때 px 대신 **vh**(view height)를 사용하자! (화면 크기에 따라 바뀜)
+            - body에 height를 줄 때 px 대신 **vh**(view height)를 사용하자! (화면 크기에 따라 바뀌는 단위, width는 vw)
         - 규칙 3. 주축과 교차축 (수평/수직)을 바꿔주려면 **flex-direction**을 수정하자
             - flex-direction: **column** or **row** or **reverse**;
             - **row** (**default**) = 주축-수평 교차축-수직 / **column** = 주축-수직 교차축-수평
@@ -109,11 +110,10 @@
             - flex-wrap: wrap-reverse; ⇒ 화면이 작아질 경우 요소들이 윗줄로 올라간다.
         - 규칙 4. flex-direction과 flex-wrap은 같이 쓰이는 경우가 많기 때문에 **flex-flow**로 한번에 쓸 수도 있다.
             - 문법 = **flex-flow: direction wrap;**
-        - 규칙 5. 줄 간격을 지정하고 싶다면 **align-content**를 사용하자
+        - 규칙 5. 줄 간격을 지정하고 싶다면 align-items가 아닌 **align-content**를 사용하자
+            - space-around, space-between, space-evenly   
         
-- Flexbox 이해를 위한 게임~
-
-[Flexbox Froggy](https://flexboxfroggy.com/#ko)
+    - Flexbox 이해를 위한 게임~ -> [Flexbox Froggy](https://flexboxfroggy.com/#ko)
 
 <br/>
 <br/>
