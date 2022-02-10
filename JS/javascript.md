@@ -107,3 +107,100 @@ player.damage = 15; // 새로운 속성 damage 추가
 💥 객체의 property-value 관계는 파이썬 딕셔너리의 key-value 관계와 유사하다.
 
 💥 객체 내 property를 수정하는 것은 가능하지만, 이미 선언된 object 자체를 변경할 수는 없다.
+
+<br/>
+
+### 함수 선언
+
+함수를 선언할 때는 function 키워드와 중괄호{ }를 사용한다.
+
+```jsx
+// 함수 선언
+function func_name(arg) {
+	//write the code
+}
+
+// 함수 실행
+func_name(arg);
+
+// 예시
+function plus(n1, n2) {
+  console.log(n1 + n2);
+}
+
+plus(3, 5);
+```
+
+<br/>
+
+### 객체 메소드 선언
+
+객체가 기능할 수 있는 메소드를 선언해주기 위해서 객체 내에서 함수를 선언해준다. 
+
+```jsx
+const object = {
+	prop1: value1,
+	func_name: function(){
+		//write the code
+	}
+};
+
+// 예시
+const player = {
+	name: "mango",
+	introduce: function() {
+		console.log("Hi, my name is", player.name);
+	}
+	sayHello: function(otherName) {
+		console.log("nice to meet you", otherName);
+	}
+};
+
+// 메소드 실행
+player.introduce(); // 파라미터 x
+player.sayHello("cherry"); // 파라미터 o
+
+// 예시 2
+const calculator = {
+  add: function (a, b) {
+    console.log(a + b);
+  },
+  sub: function (a, b) {
+    console.log(a - b);
+  },
+  mul: function (a, b) {
+    console.log(a * b);
+  },
+  div: function (a, b) {
+    console.log(a / b);
+  },
+};
+
+// 메소드 실행
+calculator.add(3, 8);
+calculator.mul(15, 4);
+calculator.div(50, 3);
+```
+<br/>
+
+### Conditional(조건문)
+
+```jsx
+if (condition){
+	// condition === true
+} else {
+	// condition === false
+}
+
+if (condition1){
+	// condition1 === true
+} else if (condition2){
+	// condition1 === false && condition2 === true
+} else {
+	// condition1 === false && condition2 === false
+}
+```
+
+💥 and 연산자 ⇒ && , or 연산자 ⇒  ||
+
+💥 비교 연산자 ⇒ === , !==
