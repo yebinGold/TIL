@@ -207,6 +207,24 @@ if (condition1){
 
 <br/>
 
+### 문자열 포매팅
+
+파이썬의 f 포매팅, format 함수 등과 같이 JS에서도 문자열과 변수를 하나로 작성하는 방법이 존재한다. <br/>
+=> 💡 **\`${변수 명}\`**
+
+```jsx
+const name = "yebin";
+
+// + 연산자로 합치는 방법
+console.log("Hello, " + name);
+// `` 백틱 내에서 한번에 작성하는 방법 
+console.log(`Hello, ${name}`);
+
+// 결과 = Hello, yebin
+```
+
+<br/>
+
 ### 실수를 줄이는 코드 작성 법
 
 - **raw value & variables**
